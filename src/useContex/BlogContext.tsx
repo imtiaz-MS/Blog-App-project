@@ -4,6 +4,8 @@ import type { Dispatch, SetStateAction } from "react";
 export type BlogContextType = {
   isAddModalOpen: boolean;
   setIsAddModalOpen: Dispatch<SetStateAction<boolean>>;
+  isDeleteModalOpen: boolean;
+  setIsDeleteModalOpen: Dispatch<SetStateAction<boolean>>;
   isMyBlogOpen: boolean;
   setIsMyBlogOpen: Dispatch<SetStateAction<boolean>>;
   isEditModalOpen: boolean;

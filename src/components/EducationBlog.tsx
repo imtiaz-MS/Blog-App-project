@@ -9,13 +9,13 @@ const EducationBlog = ({ data, isLoading }) => {
     return <div>No blogs found</div>;
   }
   return (
-    <Page>
+    <>
       {data.map((blog: object) => {
         if (blog.category === "Education & Learning") {
           return <BlogCard key={blog._id} blog={blog} />;
         }
       })}
-    </Page>
+    </>
   );
 };
 

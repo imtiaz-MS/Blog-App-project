@@ -11,11 +11,11 @@ const AllBlog = ({ data, isLoading }) => {
     return <div>No blogs found. Add your first blog!</div>;
   }
   return (
-    <Page>
-      {data.map((blog: object) => (
+    <>
+      {data.toReversed().map((blog: object) => (
         <BlogCard key={blog._id} blog={blog} />
       ))}
-    </Page>
+    </>
   );
 };
 

@@ -10,13 +10,13 @@ const Tecnology = ({ data, isLoading }) => {
     return <div>No blogs found</div>;
   }
   return (
-    <Page>
-      {data.map((blog: object) => {
+    <>
+      {data.toReversed().map((blog: object) => {
         if (blog.category === "Technology & Gadgets") {
           return <BlogCard key={blog._id} blog={blog} />;
         }
       })}
-    </Page>
+    </>
   );
 };
 

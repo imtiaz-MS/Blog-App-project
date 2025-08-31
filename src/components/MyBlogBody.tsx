@@ -1,4 +1,4 @@
-import { Card, Tabs } from "@shopify/polaris";
+import { Card, Spinner, Tabs } from "@shopify/polaris";
 import { useCallback, useContext, useState } from "react";
 import AllBlog from "./AllBlog";
 import Tecnology from "./Tecnology";
@@ -8,6 +8,7 @@ import { BlogContext } from "../useContex/BlogContext";
 import { AddBlogModal } from "./AddBlogModal";
 import { useGetMyBlogs } from "../hooks/query/useGetMyBlogQuery";
 import EditBlogModal from "./EditBlogModal";
+import { DeleteBlogModal } from "./DeleteBlogModal";
 
 const MyBlogBody = () => {
   // get myBlogs custom hook
@@ -16,7 +17,7 @@ const MyBlogBody = () => {
   const context = useContext(BlogContext);
   if (!context)
     throw new Error("HomePageBody must be used within BlogContext.Provider");
-  const { isAddModalOpen, isEditModalOpen } = context;
+  const { isAddModalOpen, isDeleteModalOpen, isEditModalOpen } = context;
   const [selected, setSelected] = useState(0);
 
   const handleTabChange = useCallback((selectedTabIndex: number) => {
@@ -24,10 +25,6 @@ const MyBlogBody = () => {
   }, []);
 
   // Only show loading for initial load
-  if (isLoading) {
-    console.log("loading");
-    return <div>Loading...</div>;
-  }
 
   // Count blogs by category for tab labels
   const allBlogsCount = data?.length || 0;
@@ -51,7 +48,12 @@ const MyBlogBody = () => {
     <div>
       {isAddModalOpen && <AddBlogModal />}
       {isEditModalOpen && <EditBlogModal />}
-
+      {isDeleteModalOpen && <DeleteBlogModal />}
+      {isLoading && (
+        <div className="flex justify-center items-center">
+          <Spinner />
+        </div>
+      )}
       {!data || data.length === 0 ? (
         <Card>
           <div className="flex flex-col items-center justify-center p-10">

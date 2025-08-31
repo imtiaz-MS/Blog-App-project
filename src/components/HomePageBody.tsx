@@ -8,6 +8,7 @@ import { BlogContext } from "../useContex/BlogContext";
 import { AddBlogModal } from "./AddBlogModal";
 import EditBlogModal from "./EditBlogModal";
 import { useGetAllBlogs } from "../hooks/query/useGetAllBlogsQuery";
+import { DeleteBlogModal } from "./DeleteBlogModal";
 
 const HomePageBody = () => {
   // get allBlogs custom hook
@@ -16,7 +17,7 @@ const HomePageBody = () => {
   const context = useContext(BlogContext);
   if (!context)
     throw new Error("HomePageBody must be used within BlogContext.Provider");
-  const { isAddModalOpen, isEditModalOpen } = context;
+  const { isAddModalOpen, isEditModalOpen, isDeleteModalOpen } = context;
   const [selected, setSelected] = useState(0);
 
   const handleTabChange = useCallback((selectedTabIndex: number) => {
@@ -43,6 +44,8 @@ const HomePageBody = () => {
     <>
       {isAddModalOpen && <AddBlogModal />}
       {isEditModalOpen && <EditBlogModal />}
+      {isDeleteModalOpen && <DeleteBlogModal />}
+
       <Card>
         <Tabs
           tabs={tabs}

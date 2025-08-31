@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { BlogUpdateData } from "../interface";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // login token from local storage
 const token = localStorage.getItem("loginToken");
@@ -21,6 +22,8 @@ export const useAddBlog = () => {
       });
       return res.data;
     },
-    onSuccess: () => queryClient.invalidateQueries(["blogs"]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["blogs"]);
+    },
   });
 };

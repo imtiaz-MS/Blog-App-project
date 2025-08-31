@@ -23,6 +23,8 @@ const EditBlogModal = () => {
       category: selectedBlog?.category || "",
     },
   });
+
+  console.log("selected blog>>", selectedBlog._id);
   // custom hook for edit blog
   const mutation = useEditBlog();
   const onsubmit = (data) => {

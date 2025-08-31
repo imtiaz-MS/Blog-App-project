@@ -1,4 +1,4 @@
-import { Icon, InlineStack, MediaCard } from "@shopify/polaris";
+import { Icon, InlineStack, MediaCard, Text } from "@shopify/polaris";
 import {
   ChatIcon,
   ShareIcon,
@@ -18,14 +18,38 @@ const BlogCard = ({ blog }) => {
   if (!blogContext) {
     throw new Error("BlogContext must be used within a BlogProvider");
   }
-  const { setIsEditModalOpen, setSelectedBlog } = blogContext;
+  const { setIsEditModalOpen, setSelectedBlog, setIsDeleteModalOpen } =
+    blogContext;
   const navigate = useNavigate();
   const { data } = useGetMyBlogs();
-  const mutation = useDeleteBlog();
+  /* const mutation = useDeleteBlog();
   const deleteBtnHandler = (id: string) => {
     mutation.mutate(id);
-  };
+  }; */
   const author = data && data.length > 0 ? data[0].author : null;
+
+  const popoverActions =
+    blog.author === author
+      ? [
+          {
+            content: "Edit",
+            onAction: () => (
+              setIsEditModalOpen(true),
+              console.log("edit btn clicked"),
+              setSelectedBlog(blog)
+            ),
+          },
+          {
+            content: "Delete",
+            onAction: () => (
+              setIsDeleteModalOpen(true),
+              console.log("select btn clicked"),
+              setSelectedBlog(blog)
+            ),
+            destructive: true,
+          },
+        ]
+      : [];
   return (
     <MediaCard
       title={blog.title}
@@ -41,25 +65,7 @@ const BlogCard = ({ blog }) => {
           : blog.description
       }
       size="small"
-      popoverActions={
-        blog.author === author
-          ? [
-              {
-                content: "Edit",
-                onAction: () => (
-                  setIsEditModalOpen(true),
-                  console.log("edit btn clicked"),
-                  setSelectedBlog(blog)
-                ),
-              },
-              {
-                content: "Delete",
-                onAction: () => deleteBtnHandler(blog._id),
-                destructive: true,
-              },
-            ]
-          : []
-      }
+      popoverActions={popoverActions}
     >
       <img
         className="w-fit"
@@ -74,12 +80,26 @@ const BlogCard = ({ blog }) => {
         src={blog.url}
       />
 
-      <div className="absolute bottom-2 right-2">
-        <InlineStack>
-          <Icon source={ThumbsUpIcon} tone="info" />
-          <Icon source={ThumbsDownIcon} tone="emphasis" />
-          <Icon source={ChatIcon} tone="success" />
-          <Icon source={ShareIcon} tone="base" />
+      <div className="absolute bottom-2 right-2 flex gap-2 items-center">
+        <InlineStack align="center" blockAlign="center" gap="100">
+          <InlineStack align="center" blockAlign="center">
+            <Icon source={ThumbsUpIcon} tone="info" />
+            <Text variant="bodySm" as="p" tone="subdued">
+              10
+            </Text>
+          </InlineStack>
+          <InlineStack align="center" blockAlign="center">
+            <Icon source={ThumbsDownIcon} tone="critical" />
+            <Text variant="bodySm" as="p" tone="subdued">
+              10
+            </Text>
+          </InlineStack>
+          <InlineStack align="center" blockAlign="center">
+            <Icon source={ChatIcon} tone="success" />
+            <Text variant="bodySm" as="p" tone="subdued">
+              10
+            </Text>
+          </InlineStack>
         </InlineStack>
       </div>
     </MediaCard>

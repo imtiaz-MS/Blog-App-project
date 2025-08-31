@@ -8,10 +8,12 @@ import { BlogContext } from "./useContex/BlogContext";
 import { useState } from "react";
 import MyBlog from "./components/MyBlog";
 import SingleBlogPage from "./components/SingleBlogPage";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isMyBlogOpen, setIsMyBlogOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
   return (
@@ -19,6 +21,8 @@ function App() {
       value={{
         isAddModalOpen,
         setIsAddModalOpen,
+        isDeleteModalOpen,
+        setIsDeleteModalOpen,
         isMyBlogOpen,
         setIsMyBlogOpen,
         isEditModalOpen,
@@ -27,6 +31,7 @@ function App() {
         setSelectedBlog,
       }}
     >
+      <ToastContainer />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />

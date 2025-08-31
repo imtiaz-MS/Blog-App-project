@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { BlogContext } from "../useContex/BlogContext";
 import { Controller, useForm, type FieldValues } from "react-hook-form";
 import { useAddBlog } from "../hooks/mutation/useAddBlogMutation";
+import { toast } from "react-toastify";
 
 export const AddBlogModal = () => {
   const blogContext = useContext(BlogContext);
@@ -26,6 +27,7 @@ export const AddBlogModal = () => {
 
   const onsubmit = (data: FieldValues) => {
     setIsAddModalOpen(false);
+    toast.success("Blog added successfully!");
     mutation.mutate({
       title: data.addBlog,
       description: data.description,
@@ -68,6 +70,7 @@ export const AddBlogModal = () => {
             />
           )}
         />
+
         <Controller
           name="description"
           control={control}
