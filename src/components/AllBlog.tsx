@@ -1,4 +1,3 @@
-import { Page } from "@shopify/polaris";
 import BlogCard from "./BlogCard";
 
 const AllBlog = ({ data, isLoading }) => {
