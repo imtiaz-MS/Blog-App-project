@@ -19,7 +19,7 @@ export const useLogin = () => {
     },
     onSuccess: (data) => {
       console.log("user info>>", data);
-      localStorage.setItem("loginToken", data.accessToken);
+      localStorage.setItem("loginToken", data);
       queryClient.invalidateQueries({ queryKey: ["blogs"] });
       if (data) {
         navigate("/", { replace: true });

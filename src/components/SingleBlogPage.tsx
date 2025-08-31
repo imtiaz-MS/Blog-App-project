@@ -4,9 +4,10 @@ import {
   Icon,
   MediaCard,
   Page,
-  Text,
+  TextField,
 } from "@shopify/polaris";
 import {
+  ChatIcon,
   // ChatIcon,
   ShareIcon,
   ThumbsDownIcon,
@@ -14,7 +15,6 @@ import {
 } from "@shopify/polaris-icons";
 
 import Footer from "./Footer";
-// import CommentModal from "./CommentModal";
 import HomeTopBar from "./HomeTopBar";
 import { useParams } from "react-router-dom";
 import { useGetSingleBlog } from "../hooks/query/useGetSingleBlogQuery";
@@ -40,17 +40,12 @@ const SingleBlogPage = () => {
           <div className="absolute bottom-2 right-2  flex">
             <Icon source={ThumbsUpIcon} tone="info" />
             <Icon source={ThumbsDownIcon} tone="emphasis" />
-            {/* <div onClick={() => setIsCommentModalOpen(true)}>
-              <Icon source={ChatIcon} tone="success" />
-            </div> */}
+            <Icon source={ChatIcon} tone="success" />
             <Icon source={ShareIcon} tone="base" />
           </div>
         </MediaCard>
 
-        <Card>
-          <Text as="h4">Comments</Text>
-          <Card></Card>
-        </Card>
+        <Card></Card>
         <Footer />
       </BlockStack>
     </Page>
