@@ -14,10 +14,12 @@ export const useLogin = () => {
         "http://localhost:8080/user/login",
         loginData
       );
+
       return res.data;
     },
     onSuccess: (data) => {
-      localStorage.setItem("loginToken", data);
+      console.log("user info>>", data);
+      localStorage.setItem("loginToken", data.accessToken);
       queryClient.invalidateQueries({ queryKey: ["blogs"] });
       if (data) {
         navigate("/", { replace: true });

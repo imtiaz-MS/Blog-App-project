@@ -49,11 +49,11 @@ const MyBlogBody = () => {
       {isAddModalOpen && <AddBlogModal />}
       {isEditModalOpen && <EditBlogModal />}
       {isDeleteModalOpen && <DeleteBlogModal />}
-      {isLoading && (
+      {/*   {isLoading && (
         <div className="flex justify-center items-center">
           <Spinner />
         </div>
-      )}
+      )} */}
       {!data || data.length === 0 ? (
         <Card>
           <div className="flex flex-col items-center justify-center p-10">
@@ -71,22 +71,27 @@ const MyBlogBody = () => {
             onSelect={handleTabChange}
             fitted
           />
-
-          <div className="mt-10">
-            {/* Pass data (even if empty) to child components */}
-            {selected === 0 && (
-              <AllBlog data={data || []} isLoading={isLoading} />
-            )}
-            {selected === 1 && (
-              <Tecnology data={data || []} isLoading={isLoading} />
-            )}
-            {selected === 2 && (
-              <FoodBlog data={data || []} isLoading={isLoading} />
-            )}
-            {selected === 3 && (
-              <EducationBlog data={data || []} isLoading={isLoading} />
-            )}
-          </div>
+          {isLoading ? (
+            <div className="flex justify-center items-center">
+              <Spinner />
+            </div>
+          ) : (
+            <div className="mt-10">
+              {/* Pass data (even if empty) to child components */}
+              {selected === 0 && (
+                <AllBlog data={data || []} isLoading={isLoading} />
+              )}
+              {selected === 1 && (
+                <Tecnology data={data || []} isLoading={isLoading} />
+              )}
+              {selected === 2 && (
+                <FoodBlog data={data || []} isLoading={isLoading} />
+              )}
+              {selected === 3 && (
+                <EducationBlog data={data || []} isLoading={isLoading} />
+              )}
+            </div>
+          )}
         </Card>
       )}
     </div>
