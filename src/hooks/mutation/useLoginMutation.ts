@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import type { BlogUpdateData } from "../interface";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // custom hook for login
 export const useLogin = () => {
@@ -19,11 +20,9 @@ export const useLogin = () => {
       localStorage.setItem("loginToken", data);
       queryClient.invalidateQueries({ queryKey: ["blogs"] });
       if (data) {
-        navigate("/homepage", { replace: true });
+        navigate("/", { replace: true });
       }
     },
-    onError: (error) => {
-      console.error("Login failed:", error);
-    },
+    onError: () => toast.error("Password and number do not match"),
   });
 };

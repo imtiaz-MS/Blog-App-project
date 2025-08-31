@@ -32,7 +32,7 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/dashboard" element={<Dasboard />} />
         <Route
-          path="/homepage"
+          path="/"
           element={
             <ProtectedRoter>
               <HomePage />

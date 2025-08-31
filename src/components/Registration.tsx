@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { useRegistration } from "../hooks/mutation/useRegistrationMutation";
+import { ToastContainer } from "react-toastify";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -59,6 +60,7 @@ const Registration = () => {
             </BlockStack>
           </Box>
           <Divider />
+          <ToastContainer />
           <Box padding="600">
             <form onSubmit={handleSubmit(onsubmit)}>
               <BlockStack gap="500">

@@ -9,7 +9,7 @@ import {
 } from "@shopify/polaris";
 import { ClipboardIcon, EnterIcon } from "@shopify/polaris-icons";
 import { useCallback, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 import { BlogContext } from "../useContex/BlogContext";
 
 const HomeTopBar = () => {
@@ -24,7 +24,7 @@ const HomeTopBar = () => {
   const { setIsMyBlogOpen } = blogContext;
 
   const logOutBtnHandler = () => {
-    navigate("/logIn");
+    navigate("/logIn", { replace: true });
     localStorage.removeItem("loginToken");
     return;
   };
@@ -33,7 +33,13 @@ const HomeTopBar = () => {
     <>
       <Card>
         <InlineStack align="space-between" blockAlign="center">
-          <img src="/src/images/Blogger-Logo.png" width="100px" alt="" />
+          <div onClick={() => navigate("/")} className="cursor-pointer">
+            <img
+              src="/src/images/Blogger-Logo.png"
+              width="100px"
+              alt="Blogger logo"
+            />
+          </div>
 
           <InlineStack align="space-between" gap={"300"}>
             <Button variant="primary" onClick={() => setIsAddModalOpen(true)}>
@@ -81,7 +87,7 @@ const HomeTopBar = () => {
                     content: "Home",
                     variant: "menu",
                     prefix: <Icon source={ClipboardIcon} />,
-                    onAction: () => navigate("/homepage"),
+                    onAction: () => navigate("/"),
                   },
                 ]}
               />

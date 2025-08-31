@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import type { BlogUpdateData } from "../interface";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 //custom hook for registration
 export const useRegistration = () => {
@@ -22,7 +23,10 @@ export const useRegistration = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries();
+      toast.success("Successfully Registered");
       navigate("/login", { replace: true });
     },
+
+    onError: () => toast.error("This account already exist"),
   });
 };

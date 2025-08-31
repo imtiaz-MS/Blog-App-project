@@ -16,7 +16,7 @@ const HomePageBody = () => {
   const context = useContext(BlogContext);
   if (!context)
     throw new Error("HomePageBody must be used within BlogContext.Provider");
-  const { isAddModalOpen, isEditModalOpen } = useContext(BlogContext);
+  const { isAddModalOpen, isEditModalOpen } = context;
   const [selected, setSelected] = useState(0);
 
   const handleTabChange = useCallback((selectedTabIndex: number) => {

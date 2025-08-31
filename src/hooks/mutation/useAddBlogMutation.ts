@@ -13,16 +13,12 @@ export const useAddBlog = () => {
       if (!token) {
         throw new Error("No authentication token found");
       }
-      const res = await axios.post(
-        "http://localhost:8080/blogs/blogs",
-        blogData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await axios.post("http://localhost:8080/blogs", blogData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return res.data;
     },
     onSuccess: () => queryClient.invalidateQueries(["blogs"]),

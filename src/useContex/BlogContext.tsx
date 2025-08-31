@@ -6,6 +6,7 @@ export type BlogContextType = {
   setIsAddModalOpen: Dispatch<SetStateAction<boolean>>;
   isMyBlogOpen: boolean;
   setIsMyBlogOpen: Dispatch<SetStateAction<boolean>>;
+  isEditModalOpen: boolean;
   setIsEditModalOpen: Dispatch<SetStateAction<boolean>>;
   setSelectedBlog: Dispatch<SetStateAction<object | null>>;
   selectedBlog: object | null;

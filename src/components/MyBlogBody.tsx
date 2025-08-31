@@ -7,6 +7,7 @@ import EducationBlog from "./EducationBlog";
 import { BlogContext } from "../useContex/BlogContext";
 import { AddBlogModal } from "./AddBlogModal";
 import { useGetMyBlogs } from "../hooks/query/useGetMyBlogQuery";
+import EditBlogModal from "./EditBlogModal";
 
 const MyBlogBody = () => {
   // get myBlogs custom hook
@@ -15,7 +16,7 @@ const MyBlogBody = () => {
   const context = useContext(BlogContext);
   if (!context)
     throw new Error("HomePageBody must be used within BlogContext.Provider");
-  const { isAddModalOpen } = context;
+  const { isAddModalOpen, isEditModalOpen } = context;
   const [selected, setSelected] = useState(0);
 
   const handleTabChange = useCallback((selectedTabIndex: number) => {
@@ -49,7 +50,8 @@ const MyBlogBody = () => {
   return (
     <div>
       {isAddModalOpen && <AddBlogModal />}
-      {/* {isEditModalOpen && <EditBlogModal blog={data} isLoading={isLoading} />} */}
+      {isEditModalOpen && <EditBlogModal />}
+
       {!data || data.length === 0 ? (
         <Card>
           <div className="flex flex-col items-center justify-center p-10">

@@ -14,6 +14,7 @@ import { MobileIcon, ViewIcon } from "@shopify/polaris-icons";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useLogin } from "../hooks/mutation/useLoginMutation";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -58,7 +59,7 @@ const Login = () => {
           </Box>
 
           <Divider />
-
+          <ToastContainer />
           <Box padding="600">
             <form onSubmit={handleSubmit(onsubmit)}>
               <BlockStack gap="500">

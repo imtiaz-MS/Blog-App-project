@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <Card roundedAbove={false}>
+    <Card roundedAbove="sm">
       <InlineStack blockAlign="center" align="space-between">
         <Text as="p" variant="bodyMd" tone="disabled">
           @ All right reserved
