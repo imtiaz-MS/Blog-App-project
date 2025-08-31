@@ -1,5 +1,5 @@
 import { Card, Tabs } from "@shopify/polaris";
-import { useState, useCallback, useContext } from "react";
+import { useState, useCallback } from "react";
 
 import AllBlog from "./AllBlog.tsx";
 import Tecnology from "./Tecnology.tsx";

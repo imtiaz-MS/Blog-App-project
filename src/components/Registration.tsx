@@ -155,7 +155,7 @@ const Registration = () => {
                     loading={mutation.isPending}
                     disabled={!isValid}
                   >
-                    {isLoading ? "Registration..." : "Registration"}
+                    "Registration
                   </Button>
                 </BlockStack>
               </BlockStack>
