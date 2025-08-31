@@ -9,8 +9,9 @@ import {
 import { useContext } from "react";
 import { BlogContext } from "../useContex/BlogContext";
 import { useNavigate } from "react-router-dom";
-import { useGetMyBlogs } from "../hooks/useQueryHooks";
-import { useDeleteBlog } from "../hooks/useMutationHooks";
+
+import { useGetMyBlogs } from "../hooks/query/useGetMyBlogQuery";
+import { useDeleteBlog } from "../hooks/mutation/useDeleteMutation";
 
 const BlogCard = ({ blog }) => {
   const blogContext = useContext(BlogContext);

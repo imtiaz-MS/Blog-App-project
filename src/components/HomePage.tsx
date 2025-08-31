@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import HomeTopBar from "./HomeTopBar";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthorization } from "../hooks/useMutationHooks";
+import { useAuthorization } from "../hooks/mutation/useAuthorization";
 
 const HomePage = () => {
   const navigate = useNavigate();

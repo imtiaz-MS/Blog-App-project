@@ -5,7 +5,7 @@ import AllBlog from "./AllBlog.tsx";
 import Tecnology from "./Tecnology.tsx";
 import FoodBlog from "./FoodBlog.tsx";
 import EducationBlog from "./EducationBlog.tsx";
-import { useGetAllBlogs } from "../hooks/useQueryHooks.ts";
+import { useGetAllBlogs } from "../hooks/query/useGetAllBlogsQuery.ts";
 
 const DashboardBody = () => {
   // get allBlogs custom hook

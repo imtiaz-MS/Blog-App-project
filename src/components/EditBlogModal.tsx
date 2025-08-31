@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Controller } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { BlogContext } from "../useContex/BlogContext";
-import { useEditBlog } from "../hooks/useMutationHooks";
+import { useEditBlog } from "../hooks/mutation/useEditMutation";
 
 const EditBlogModal = () => {
   const context = useContext(BlogContext);

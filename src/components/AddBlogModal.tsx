@@ -2,7 +2,8 @@ import { Modal, Select, TextField } from "@shopify/polaris";
 import { useContext } from "react";
 import { BlogContext } from "../useContex/BlogContext";
 import { Controller, useForm, type FieldValues } from "react-hook-form";
-import { useAddBlog } from "../hooks/useMutationHooks";
+import { useAddBlog } from "../hooks/mutation/useAddBlogMutation";
+
 export const AddBlogModal = () => {
   const blogContext = useContext(BlogContext);
   if (!blogContext) {

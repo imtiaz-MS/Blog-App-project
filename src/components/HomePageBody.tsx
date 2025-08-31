@@ -7,9 +7,8 @@ import EducationBlog from "./EducationBlog";
 import { BlogContext } from "../useContex/BlogContext";
 import { AddBlogModal } from "./AddBlogModal";
 import EditBlogModal from "./EditBlogModal";
-import { useGetAllBlogs } from "../hooks/useQueryHooks";
+import { useGetAllBlogs } from "../hooks/query/useGetAllBlogsQuery";
 
-// import { useGetAllBlogs } from "../hooks/useBlogQuery";
 const HomePageBody = () => {
   // get allBlogs custom hook
   const { data, isLoading } = useGetAllBlogs();

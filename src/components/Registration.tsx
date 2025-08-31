@@ -13,7 +13,7 @@ import { MobileIcon, ViewIcon } from "@shopify/polaris-icons";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
-import { useRegistration } from "../hooks/useMutationHooks";
+import { useRegistration } from "../hooks/mutation/useRegistrationMutation";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);

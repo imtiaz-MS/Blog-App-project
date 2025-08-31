@@ -6,7 +6,7 @@ import FoodBlog from "./FoodBlog";
 import EducationBlog from "./EducationBlog";
 import { BlogContext } from "../useContex/BlogContext";
 import { AddBlogModal } from "./AddBlogModal";
-import { useGetMyBlogs } from "../hooks/useQueryHooks";
+import { useGetMyBlogs } from "../hooks/query/useGetMyBlogQuery";
 
 const MyBlogBody = () => {
   // get myBlogs custom hook

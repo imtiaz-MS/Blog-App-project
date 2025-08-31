@@ -17,7 +17,7 @@ import Footer from "./Footer";
 // import CommentModal from "./CommentModal";
 import HomeTopBar from "./HomeTopBar";
 import { useParams } from "react-router-dom";
-import { useGetSingleBlog } from "../hooks/useQueryHooks";
+import { useGetSingleBlog } from "../hooks/query/useGetSingleBlogQuery";
 
 const SingleBlogPage = () => {
   const { id } = useParams();
