@@ -3,9 +3,16 @@ import { useNavigate } from "react-router-dom";
 import type { BlogUpdateData } from "../interface";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { BlogContext } from "../../useContex/BlogContext";
 
 // custom hook for login
 export const useLogin = () => {
+  const blogContext = useContext(BlogContext);
+  if (!blogContext) {
+    throw new Error("BlogContext must be used within a BlogProvider");
+  }
+  const { setUserInfo } = blogContext;
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   return useMutation({
@@ -18,9 +25,12 @@ export const useLogin = () => {
       return res.data;
     },
     onSuccess: (data) => {
-      console.log("user info>>", data);
-      localStorage.setItem("loginToken", data);
+      localStorage.setItem("loginToken", data.accessToken);
+      localStorage.setItem("userId", data.userId);
+      setUserInfo(data);
+      console.log("user info from login>>", data);
       queryClient.invalidateQueries({ queryKey: ["blogs"] });
+      queryClient.setQueryData(["authUser"], data);
       if (data) {
         navigate("/", { replace: true });
       }

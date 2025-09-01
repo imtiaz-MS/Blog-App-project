@@ -1,4 +1,4 @@
-import { Page } from "@shopify/polaris";
+import { BlockStack, Page } from "@shopify/polaris";
 import HomePageBody from "./HomePageBody";
 import Footer from "./Footer";
 import HomeTopBar from "./HomeTopBar";
@@ -20,9 +20,11 @@ const HomePage = () => {
   }, [token]);
   return (
     <Page>
-      <HomeTopBar />
-      <HomePageBody />
-      <Footer />
+      <BlockStack gap={"200"}>
+        <HomeTopBar />
+        <HomePageBody />
+        <Footer />
+      </BlockStack>
     </Page>
   );
 };

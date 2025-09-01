@@ -26,6 +26,7 @@ const HomeTopBar = () => {
   const logOutBtnHandler = () => {
     navigate("/logIn", { replace: true });
     localStorage.removeItem("loginToken");
+    localStorage.removeItem("userId");
     return;
   };
 

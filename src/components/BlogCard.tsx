@@ -52,7 +52,14 @@ const BlogCard = ({ blog }) => {
       : [];
   return (
     <MediaCard
-      title={blog.title}
+      title={
+        <span
+          className="cursor-pointer"
+          onClick={() => navigate(`/singleblog/${blog._id}`)}
+        >
+          {blog.title}
+        </span>
+      }
       primaryAction={{
         content: "Read More",
         onAction: () => (
@@ -67,18 +74,23 @@ const BlogCard = ({ blog }) => {
       size="small"
       popoverActions={popoverActions}
     >
-      <img
-        className="w-fit"
-        alt=""
-        width="100%"
-        height="100%"
-        style={{
-          aspectRatio: "16/9",
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
-        src={blog.url}
-      />
+      <div
+        className="cursor-pointer"
+        onClick={() => navigate(`/singleblog/${blog._id}`)}
+      >
+        <img
+          className="w-fit"
+          alt=""
+          width="100%"
+          height="100%"
+          style={{
+            aspectRatio: "16/9",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+          src={blog.url}
+        />
+      </div>
 
       <div className="absolute bottom-2 right-2 flex gap-2 items-center">
         <InlineStack align="center" blockAlign="center" gap="100">

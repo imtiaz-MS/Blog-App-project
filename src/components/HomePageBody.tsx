@@ -17,7 +17,8 @@ const HomePageBody = () => {
   const context = useContext(BlogContext);
   if (!context)
     throw new Error("HomePageBody must be used within BlogContext.Provider");
-  const { isAddModalOpen, isEditModalOpen, isDeleteModalOpen } = context;
+  const { isAddModalOpen, isEditModalOpen, isDeleteModalOpen, selectedBlog } =
+    context;
   const [selected, setSelected] = useState(0);
 
   const handleTabChange = useCallback((selectedTabIndex: number) => {
@@ -44,7 +45,7 @@ const HomePageBody = () => {
     <>
       {isAddModalOpen && <AddBlogModal />}
       {isEditModalOpen && <EditBlogModal />}
-      {isDeleteModalOpen && <DeleteBlogModal />}
+      {isDeleteModalOpen && <DeleteBlogModal selected={selectedBlog} />}
 
       <Card>
         <Tabs

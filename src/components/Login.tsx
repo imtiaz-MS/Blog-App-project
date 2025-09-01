@@ -11,7 +11,7 @@ import {
 } from "@shopify/polaris";
 import { Controller, useForm } from "react-hook-form";
 import { MobileIcon, ViewIcon } from "@shopify/polaris-icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useLogin } from "../hooks/mutation/useLoginMutation";
 import { ToastContainer } from "react-toastify";
@@ -19,6 +19,7 @@ import { ToastContainer } from "react-toastify";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const mutation = useLogin();
+
   interface LoginFromValues {
     phone: string;
     password: string;
@@ -30,7 +31,6 @@ const Login = () => {
   } = useForm<LoginFromValues>({ mode: "onChange" });
 
   const onsubmit = async (data: LoginFromValues) => {
-    console.log(data);
     mutation.mutate({
       phone: data.phone,
       password: data.password,

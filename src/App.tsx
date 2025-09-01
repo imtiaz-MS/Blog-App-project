@@ -15,7 +15,9 @@ function App() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isMyBlogOpen, setIsMyBlogOpen] = useState(false);
-  const [selectedBlog, setSelectedBlog] = useState(null);
+  const [selectedBlog, setSelectedBlog] = useState<object | null>(null);
+  const [userInfo, setUserInfo] = useState<object | null>(null);
+
   return (
     <BlogContext.Provider
       value={{
@@ -29,6 +31,8 @@ function App() {
         setIsEditModalOpen,
         selectedBlog,
         setSelectedBlog,
+        userInfo,
+        setUserInfo,
       }}
     >
       <ToastContainer />

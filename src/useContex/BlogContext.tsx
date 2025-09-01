@@ -12,6 +12,8 @@ export type BlogContextType = {
   setIsEditModalOpen: Dispatch<SetStateAction<boolean>>;
   setSelectedBlog: Dispatch<SetStateAction<object | null>>;
   selectedBlog: object | null;
+  userInfo: object | null;
+  setUserInfo: Dispatch<SetStateAction<object | null>>;
 };
 
 export const BlogContext = createContext<BlogContextType | undefined>(
