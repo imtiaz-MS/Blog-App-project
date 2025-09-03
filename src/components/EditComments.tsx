@@ -38,7 +38,7 @@ const EditComments = ({ comment }) => {
       open={isEditModalOpen}
       title="Edit Comment"
       primaryAction={{
-        content: "Edit",
+        content: "Save",
         onAction: handleSubmit(onsubmit),
       }}
       secondaryActions={[

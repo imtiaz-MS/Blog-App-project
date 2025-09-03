@@ -47,23 +47,34 @@ const HomePageBody = () => {
       {isEditModalOpen && <EditBlogModal />}
       {isDeleteModalOpen && <DeleteBlogModal selected={selectedBlog} />}
 
-      <Card>
-        <Tabs
-          tabs={tabs}
-          selected={selected}
-          onSelect={handleTabChange}
-          fitted
-        />
+      {!data || data.length === 0 ? (
+        <Card>
+          <div className="flex flex-col items-center justify-center p-10">
+            <h2 className="text-2xl font-semibold mb-4">No Blogs Found</h2>
+            <p className="text-gray-600 mb-6">
+              You haven't added any blogs yet.
+            </p>
+          </div>
+        </Card>
+      ) : (
+        <Card>
+          <Tabs
+            tabs={tabs}
+            selected={selected}
+            onSelect={handleTabChange}
+            fitted
+          />
 
-        <div className="mt-10">
-          {selected === 0 && <AllBlog data={data} isLoading={isLoading} />}
-          {selected === 1 && <Tecnology data={data} isLoading={isLoading} />}
-          {selected === 2 && <FoodBlog data={data} isLoading={isLoading} />}
-          {selected === 3 && (
-            <EducationBlog data={data} isLoading={isLoading} />
-          )}
-        </div>
-      </Card>
+          <div className="mt-10">
+            {selected === 0 && <AllBlog data={data} isLoading={isLoading} />}
+            {selected === 1 && <Tecnology data={data} isLoading={isLoading} />}
+            {selected === 2 && <FoodBlog data={data} isLoading={isLoading} />}
+            {selected === 3 && (
+              <EducationBlog data={data} isLoading={isLoading} />
+            )}
+          </div>
+        </Card>
+      )}
     </>
   );
 };

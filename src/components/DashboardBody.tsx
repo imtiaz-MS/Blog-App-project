@@ -32,7 +32,14 @@ const DashboardBody = () => {
     { id: "4", content: `Education & Learning(${educationCount})` },
   ];
 
-  return (
+  return !data || data.length === 0 ? (
+    <Card>
+      <div className="flex flex-col items-center justify-center p-10">
+        <h2 className="text-2xl font-semibold mb-4">No Blogs Found</h2>
+        <p className="text-gray-600 mb-6">You haven't added any blogs yet.</p>
+      </div>
+    </Card>
+  ) : (
     <Card roundedAbove={false}>
       <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange} fitted />
       <div className="mt-10">

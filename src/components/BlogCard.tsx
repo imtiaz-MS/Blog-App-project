@@ -1,17 +1,14 @@
 import { Icon, InlineStack, MediaCard, Text } from "@shopify/polaris";
-import {
-  ChatIcon,
-  ShareIcon,
-  ThumbsDownIcon,
-  ThumbsUpIcon,
-} from "@shopify/polaris-icons";
+import { ChatIcon, ThumbsDownIcon, ThumbsUpIcon } from "@shopify/polaris-icons";
 
 import { useContext } from "react";
 import { BlogContext } from "../useContex/BlogContext";
 import { useNavigate } from "react-router-dom";
-
 import { useGetMyBlogs } from "../hooks/query/useGetMyBlogQuery";
-import { useDeleteBlog } from "../hooks/mutation/useDeleteMutation";
+
+import { useAddLike } from "../hooks/mutation/useAddLikeMutation";
+import { useDisLike } from "../hooks/mutation/useDislikeMutation";
+import { useGetComments } from "../hooks/query/useGetCommentsQuery";
 
 const BlogCard = ({ blog }) => {
   const blogContext = useContext(BlogContext);
@@ -21,11 +18,28 @@ const BlogCard = ({ blog }) => {
   const { setIsEditModalOpen, setSelectedBlog, setIsDeleteModalOpen } =
     blogContext;
   const navigate = useNavigate();
+  //get my blog
   const { data } = useGetMyBlogs();
-  /* const mutation = useDeleteBlog();
-  const deleteBtnHandler = (id: string) => {
-    mutation.mutate(id);
-  }; */
+  //like mutation
+  const likeMutation = useAddLike();
+  //dislikeMutation
+  const dislikeMutation = useDisLike();
+  //getCommentMutation
+  const { data: comments } = useGetComments(blog._id);
+  console.log("comments for specific blog>>", comments);
+
+  //like controller
+  const likeController = () => {
+    console.log("like btn clicked");
+    likeMutation.mutate(blog._id);
+  };
+
+  //dislike controller
+  const disLikeController = () => {
+    console.log("dislike btn clicked");
+    dislikeMutation.mutate(blog._id);
+  };
+
   const author = data && data.length > 0 ? data[0].author : null;
 
   const popoverActions =
@@ -92,24 +106,33 @@ const BlogCard = ({ blog }) => {
         />
       </div>
 
-      <div className="absolute bottom-2 right-2 flex gap-2 items-center">
+      <div className="absolute bottom-2 right-2 flex gap-2 items-center z-50">
         <InlineStack align="center" blockAlign="center" gap="100">
           <InlineStack align="center" blockAlign="center">
-            <Icon source={ThumbsUpIcon} tone="info" />
+            <span className="cursor-pointer" onClick={() => likeController()}>
+              <Icon source={ThumbsUpIcon} tone="info" />
+            </span>
             <Text variant="bodySm" as="p" tone="subdued">
-              10
+              {blog?.like?.length || 0}
             </Text>
           </InlineStack>
+
           <InlineStack align="center" blockAlign="center">
-            <Icon source={ThumbsDownIcon} tone="critical" />
+            <span
+              className="cursor-pointer"
+              onClick={() => disLikeController()}
+            >
+              <Icon source={ThumbsDownIcon} tone="critical" />
+            </span>
             <Text variant="bodySm" as="p" tone="subdued">
-              10
+              {blog?.dislike?.length}
             </Text>
           </InlineStack>
+
           <InlineStack align="center" blockAlign="center">
             <Icon source={ChatIcon} tone="success" />
             <Text variant="bodySm" as="p" tone="subdued">
-              10
+              {comments?.length || 0}
             </Text>
           </InlineStack>
         </InlineStack>

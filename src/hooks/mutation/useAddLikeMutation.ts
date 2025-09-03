@@ -1,0 +1,29 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+// pass both id and type when calling
+export const useAddLike = () => {
+  const queryClient = useQueryClient();
+  const token = localStorage.getItem("loginToken");
+
+  return useMutation({
+    mutationFn: async (id) => {
+      const response = await axios.patch(
+        `http://localhost:8080/reaction/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        }
+      );
+      return response.data;
+    },
+    onSuccess: () => {
+      // queryClient.invalidateQueries(["blogs"]);
+      queryClient.invalidateQueries(["blogs"]);
+      toast.success("Reaction updated!");
+    },
+  });
+};

@@ -14,7 +14,6 @@ import {
   ChatIcon,
   DeleteIcon,
   EditIcon,
-  ShareIcon,
   ThumbsDownIcon,
   ThumbsUpIcon,
 } from "@shopify/polaris-icons";
@@ -31,6 +30,8 @@ import { useAddComment } from "../hooks/mutation/useAddCommentMutation";
 import { useGetComments } from "../hooks/query/useGetCommentsQuery";
 import DeleteComment from "./DeleteComment";
 import EditComments from "./EditComments";
+import { useAddLike } from "../hooks/mutation/useAddLikeMutation";
+import { useDisLike } from "../hooks/mutation/useDislikeMutation";
 
 const SingleBlogPage = () => {
   const { id } = useParams();
@@ -39,15 +40,31 @@ const SingleBlogPage = () => {
   const mutation = useAddComment();
   //get comment mutation
   const { data: comments, isLoading: commentLoading } = useGetComments(id);
+  //like mutation
+  const likeMutation = useAddLike();
+  //dislikeMutation
+  const dislikeMutation = useDisLike();
 
-  const [imageLoaded, setImageLoaded] = useState(false);
+  //like controller
+  const likeController = () => {
+    console.log("like btn clicked");
+    likeMutation.mutate(blog._id);
+  };
+
+  //dislike controller
+  const disLikeController = () => {
+    console.log("dislike btn clicked");
+    dislikeMutation.mutate(blog._id);
+  };
+
+  // const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
   const { handleSubmit, control, reset } = useForm();
 
   const blogContext = useContext(BlogContext);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   if (!blogContext) {
     throw new Error("BlogContext must be used within a BlogProvider");
   }
@@ -105,12 +122,39 @@ const SingleBlogPage = () => {
               />
             </div>
           )}
+          <div className="absolute bottom-2 right-2 flex gap-2 items-center z-50">
+            <InlineStack align="center" blockAlign="center" gap="100">
+              <InlineStack align="center" blockAlign="center">
+                <span
+                  className="cursor-pointer"
+                  onClick={() => likeController()}
+                >
+                  <Icon source={ThumbsUpIcon} tone="info" />
+                </span>
+                <Text variant="bodySm" as="p" tone="subdued">
+                  {blog?.like?.length || 0}
+                </Text>
+              </InlineStack>
 
-          <div className="absolute bottom-2 right-2 flex">
-            <Icon source={ThumbsUpIcon} tone="info" />
-            <Icon source={ThumbsDownIcon} tone="emphasis" />
-            <Icon source={ChatIcon} tone="success" />
-            <Icon source={ShareIcon} tone="base" />
+              <InlineStack align="center" blockAlign="center">
+                <span
+                  className="cursor-pointer"
+                  onClick={() => disLikeController()}
+                >
+                  <Icon source={ThumbsDownIcon} tone="critical" />
+                </span>
+                <Text variant="bodySm" as="p" tone="subdued">
+                  {blog?.dislike?.length}
+                </Text>
+              </InlineStack>
+
+              <InlineStack align="center" blockAlign="center">
+                <Icon source={ChatIcon} tone="success" />
+                <Text variant="bodySm" as="p" tone="subdued">
+                  {comments?.length || 0}
+                </Text>
+              </InlineStack>
+            </InlineStack>
           </div>
         </MediaCard>
 
