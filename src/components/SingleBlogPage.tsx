@@ -46,14 +46,12 @@ const SingleBlogPage = () => {
   const dislikeMutation = useDisLike();
 
   //like controller
-  const likeController = () => {
-    console.log("like btn clicked");
-    likeMutation.mutate(blog._id);
+  const likeController = async () => {
+    await likeMutation.mutate(blog._id);
   };
 
   //dislike controller
   const disLikeController = () => {
-    console.log("dislike btn clicked");
     dislikeMutation.mutate(blog._id);
   };
 
@@ -117,7 +115,7 @@ const SingleBlogPage = () => {
                 className="w-full"
                 alt={blog.title}
                 src={blog.url}
-                onLoad={() => setImageLoaded(true)}
+                // onLoad={() => setImageLoaded(true)}
                 onError={() => setImageError(true)}
               />
             </div>

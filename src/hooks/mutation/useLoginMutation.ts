@@ -29,9 +29,8 @@ export const useLogin = () => {
       localStorage.setItem("userId", data.userId);
       setUserInfo(data);
       console.log("user info from login>>", data);
-      queryClient.invalidateQueries({ queryKey: ["blogs"] });
-      queryClient.setQueryData(["authUser"], data);
       if (data) {
+        queryClient.invalidateQueries(["blogs"]);
         navigate("/", { replace: true });
       }
     },

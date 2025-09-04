@@ -46,7 +46,7 @@ const EditBlogModal = () => {
       open={isEditModalOpen}
       title="Edit Blog"
       primaryAction={{
-        content: "Edit",
+        content: "Save",
         onAction: handleSubmit(onsubmit),
       }}
       secondaryActions={[

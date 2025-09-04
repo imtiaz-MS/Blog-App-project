@@ -29,7 +29,7 @@ export const useAddComment = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["comments"]);
+      queryClient.invalidateQueries({ queryKey: ["comments"] });
       toast.success("Comment added successfully!");
     },
   });

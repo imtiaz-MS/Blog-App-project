@@ -21,9 +21,8 @@ export const useDisLike = () => {
       return response.data;
     },
     onSuccess: () => {
-      // queryClient.invalidateQueries(["blogs"]);
-      queryClient.invalidateQueries(["blogs"]);
-      toast.success("Reaction updated!");
+      queryClient.invalidateQueries({ queryKey: ["blogs"] });
+      queryClient.invalidateQueries({ queryKey: ["singleBlog"] });
     },
   });
 };

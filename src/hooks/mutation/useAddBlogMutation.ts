@@ -22,7 +22,7 @@ export const useAddBlog = () => {
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["blogs"]);
+      queryClient.invalidateQueries({ queryKey: ["blogs"] });
     },
   });
 };

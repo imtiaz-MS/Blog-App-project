@@ -26,17 +26,16 @@ const BlogCard = ({ blog }) => {
   const dislikeMutation = useDisLike();
   //getCommentMutation
   const { data: comments } = useGetComments(blog._id);
+  console.log("blog id>>>", blog._id);
   console.log("comments for specific blog>>", comments);
 
   //like controller
-  const likeController = () => {
-    console.log("like btn clicked");
-    likeMutation.mutate(blog._id);
+  const likeController = async () => {
+    await likeMutation.mutateAsync(blog._id);
   };
 
   //dislike controller
-  const disLikeController = () => {
-    console.log("dislike btn clicked");
+  const disLikeController = async () => {
     dislikeMutation.mutate(blog._id);
   };
 
@@ -128,13 +127,11 @@ const BlogCard = ({ blog }) => {
               {blog?.dislike?.length}
             </Text>
           </InlineStack>
-
+          {/* 
           <InlineStack align="center" blockAlign="center">
             <Icon source={ChatIcon} tone="success" />
-            <Text variant="bodySm" as="p" tone="subdued">
-              {comments?.length || 0}
-            </Text>
-          </InlineStack>
+            <Text variant="bodySm" as="p" tone="subdued"></Text>
+          </InlineStack> */}
         </InlineStack>
       </div>
     </MediaCard>
